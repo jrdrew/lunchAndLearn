@@ -1,8 +1,10 @@
 package org.jrdrew.shortener;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Copyright (c) 2014-2016 Cazena, Inc., as an unpublished work.
@@ -17,9 +19,21 @@ import static junit.framework.TestCase.assertNotNull;
  */
 public class CanaryTest {
 
+    private Canary canary;
+
+    @Before
+    public void setup() {
+        canary = new Canary();
+    }
+
     @Test
     public void testIsThere() {
-        assertNotNull(new Canary());
+        assertNotNull(canary);
+    }
+
+    @Test
+    public void testIsDumb() {
+        assertTrue(canary.isDumb());
     }
 
 }

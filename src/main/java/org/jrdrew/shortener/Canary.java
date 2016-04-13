@@ -12,4 +12,8 @@
 package org.jrdrew.shortener;
 
 public class Canary {
+
+    public boolean isDumb() {
+        return true;
+    }
 }
