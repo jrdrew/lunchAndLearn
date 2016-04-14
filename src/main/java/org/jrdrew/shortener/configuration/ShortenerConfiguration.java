@@ -13,7 +13,6 @@ package org.jrdrew.shortener.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,41 +20,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.client.RestTemplate;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Configuration
 @ComponentScan("org.jrdrew.shortener")
 public class ShortenerConfiguration {
-
-    @Value("${db.jdbcUrl}")
-    private String jdbcUrl;
-
-    @Value("${db.username}")
-    private String jdbcUsername;
-
-    @Value("${db.password}")
-    private String jdbcPassword;
-
+    
     @Bean
     public static PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
         propertyPlaceholderConfigurer.setIgnoreUnresolvablePlaceholders(false);
         propertyPlaceholderConfigurer.setLocation(new ClassPathResource("production.properties"));
         return propertyPlaceholderConfigurer;
-    }
-
-    @Bean
-    public DataSource getDataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-        driverManagerDataSource.setUrl(jdbcUrl);
-        driverManagerDataSource.setUsername(jdbcUsername);
-        driverManagerDataSource.setPassword(jdbcPassword);
-        return driverManagerDataSource;
     }
 
     @Bean

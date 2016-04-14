@@ -28,11 +28,6 @@ public class ShortenerConfigurationTest extends AbstractSpringConfigTester {
     }
 
     @Test
-    public void testDataSource() throws Exception {
-        assertNotNull(shortenerConfiguration.getDataSource());
-    }
-
-    @Test
     public void testGetRestTemplate() throws Exception {
         assertNotNull(shortenerConfiguration.getRestTemplate());
     }
