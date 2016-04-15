@@ -27,7 +27,7 @@ import java.util.List;
 @Configuration
 @ComponentScan("org.jrdrew.shortener")
 public class ShortenerConfiguration {
-    
+
     @Bean
     public static PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
