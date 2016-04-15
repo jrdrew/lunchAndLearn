@@ -11,6 +11,9 @@
  */
 package org.jrdrew.shortener.controller;
 
+import org.jrdrew.shortener.service.UrlService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,10 +23,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class ShortenerController {
 
+    private UrlService urlService;
+
+    @Autowired
+    public ShortenerController(UrlService urlService) {
+        this.urlService = urlService;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public String get() {
-        return "hello";
+        return "hello world";
     }
+
+    @RequestMapping(path = "{shortUrl}", method = RequestMethod.GET)
+    @ResponseBody
+    public String getLongUrl(@PathVariable String shortUrl) {
+        return urlService.getLongUrl(shortUrl);
+
+    }
+
 
 }
